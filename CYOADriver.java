@@ -20,7 +20,7 @@ public class CYOADriver {
 		while (con == true) {
 			
 			if(path.equals("A")) {
-				System.out.println("Path A was selected");
+				System.out.println(story.scenario1());
 			} else if(path.equals("B")) {
 				System.out.println("Path B was selected");
 			} else if (path.equals("C")) {
