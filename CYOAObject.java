@@ -63,8 +63,9 @@ public class CYOAObject {
 	//This is used to print the options after you have not taken the pill
 	public String noTakePillOptions() {
 		return "\n\nA: Grab your phone and call for help"
-				+ "\nB:Yell and hope somone hears you"
-				+ "\nC: Lay there and accept defeat";
+				+ "\nB: Yell and hope somone hears you"
+				+ "\nC: Lay there and accept defeat"
+				+ "\nEnter letter to choose path: ";
 	}
 	
 	public String scenario2() {
@@ -91,7 +92,24 @@ public class CYOAObject {
 	}
 	
 	public String phoneWin(int numWins) {
-		return "\nYou have no clue why but those numbers have stuck with you. So you enter them and the phone unlocks! You now have access to call people. It slipped your mind for a while but you finally remember to call 911. You dial the number and someone answers. They ask you a few questions and the final words of hope arrive. It will be alright (character name here) we have found your location and are sending help immediately. You lie there in relief knowing you are going to make it. But you start to fade out because of your blood loss. All you can do is hope. Luckily within a minute they break into the room and give you the medical attention you needed. You are saved!" + winMessage(numWins);
+		return "\nYou have no clue why but those numbers have stuck with you. So you enter them and the phone unlocks! "
+				+ "\nYou now have access to call somone for help, it slipped your mind for a while but you finally remember to call 911. "
+				+ "\nYou dial the number and someone answers. They ask you a few questions and the final words of hope arrive. "
+				+ "\nThen those words of hope arrive \"It will be alright " + name +" we have found your location and are sending help immediately.\" "
+				+ "\nYou lie there in relief knowing you are going to make it. But you start to fade out because of your blood loss. All you can do is hope. "
+				+ "\nLuckily within a minute they break into the room and give you the medical attention you needed. You are saved!" + winMessage(numWins);
+	}
+	
+	public String scenario3(int numWins) {
+		return "\nYou gather yourself and muster up enough strength to let out a cry for help. "
+				+ "\nThis hurts your head and you feel like the pain is going to kill you… Moments go by without an answer and you feel like this is it. "
+				+ "\nThen to your surprise, someone opens a door and sees you lying there in pain. They run towards you and call an ambulance. "
+				+ "\nYou have been saved!!" + winMessage(numWins);
+	}
+	
+	public String scenario4(int numWins) {
+		return "\nThe pain is overwhelming and you just can’t take it anymore. So you decide to lay down and rest for a bit. "
+				+ "\nBut before you know it you blackout and die." + deathMessage(numWins);
 	}
 	
 
@@ -102,7 +120,8 @@ public class CYOAObject {
 	
 	//This displays the win message of the game.
 	public String winMessage(int numWins) {
-		return "\n\nCongratulations you survived! Would you like to play again and try to escape in another way? Ways found of surviving " + numWins + " out of 2 (enter q to quit or anything else to try again): ";
+		return "\n\nCongratulations you survived! Would you like to play again and try to escape in another way? "
+				+ "\nWays found of surviving " + numWins + " out of 2 (enter q to quit or anything else to try again): ";
 	}
 	
 	public int getAttemptsLeft() {
