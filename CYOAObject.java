@@ -24,9 +24,9 @@ public class CYOAObject {
 	//This is used to print the options after the introduction
 	public String introOptions() {
 		return "\nA: Get up and investigate the room"
-				+ "\nB:Grab your phone and call for help"
-				+ "\nC:Yell and hope somone hears you"
-				+ "\nD:Lay there and accept defeat"
+				+ "\nB: Grab your phone and call for help"
+				+ "\nC: Yell and hope somone hears you"
+				+ "\nD: Lay there and accept defeat"
 				+ "\nEnter letter to choose path: ";
 	}
 	
@@ -44,8 +44,8 @@ public class CYOAObject {
 	
 	//This is used to print the options after reading though scenario one 
 	public String scenario1Options() {
-		return "\nA:Take the pill"
-				+ "\nB:Leave the pill and continue to look around "
+		return "\nA: Take the pill"
+				+ "\nB: Leave the pill and continue to look around "
 				+ "\nEnter letter to choose path: ";
 	}
 	

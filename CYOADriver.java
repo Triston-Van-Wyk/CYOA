@@ -191,6 +191,9 @@ public class CYOADriver {
 			
 		}
 		
+		if(numWins == 2) {
+			System.out.println("\n\nWow you found all of the survival endings! Geat work!");
+		}
 		System.out.println("\nThanks for playing!");
 		scan.close();
 	}
