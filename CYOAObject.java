@@ -92,7 +92,7 @@ public class CYOAObject {
 	}
 	
 	public String phoneWin(int numWins) {
-		return "\nYou have no clue why but those numbers have stuck with you. So you enter them and the phone unlocks! "
+		return "\nYou have no clue why but those numbers have stuck with you. So you enter " + pascodes[2] + " and the phone unlocks! "
 				+ "\nYou now have access to call somone for help, it slipped your mind for a while but you finally remember to call 911. "
 				+ "\nYou dial the number and someone answers. They ask you a few questions and the final words of hope arrive. "
 				+ "\nThen those words of hope arrive \"It will be alright " + name +" we have found your location and are sending help immediately.\" "
