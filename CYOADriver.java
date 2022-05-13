@@ -6,12 +6,12 @@ public class CYOADriver {
 		//Items used run the code
 		Scanner scan = new Scanner(System.in);
 		boolean con = true;
+		int numWins = 0;
 		
 		System.out.print("Enter a name: ");
 		String name = scan.next();
 		
 		CYOAObject story = new CYOAObject(name);
-		
 	
 		while (con == true) {
 			//Used to start the game
@@ -28,7 +28,7 @@ public class CYOADriver {
 				
 				//takes you to pill death 
 				if(path.equals("A")) {
-					System.out.println(story.pillDeath());
+					System.out.print(story.pillDeath(numWins));
 					path = scan.next().toLowerCase();
 					if(path.equals("q")) {
 						con = false;
@@ -46,7 +46,55 @@ public class CYOADriver {
 			} else if(path.equals("B")) {
 				System.out.println(story.scenario2());
 				System.out.print(story.scenario2Options());
-				path = scan.next().toUpperCase();
+				boolean phoneWin = false;
+				
+				while ((story.getAttemptsLeft() > 0) && (phoneWin==false)) {
+					
+					path = scan.next().toUpperCase();
+					
+					if(path.equals("C")) {
+						phoneWin = true;
+					} else if (path.equals("A")) {
+						story.decreaseAttemptsLeft();
+						
+						if(story.getAttemptsLeft() > 0) {
+							System.out.println(story.tryAgainMessage(0));
+							System.out.print(story.scenario2Options().substring(8));
+						}
+					} else if (path.equals("B")) {
+						story.decreaseAttemptsLeft();
+						
+						if(story.getAttemptsLeft() > 0) {
+							System.out.println(story.tryAgainMessage(1));
+							System.out.print(story.scenario2Options().substring(0,8) + story.scenario2Options().substring(16));
+						}
+					} else {
+						story.decreaseAttemptsLeft();
+						if(story.getAttemptsLeft() > 0) {
+							System.out.println(story.tryAgainMessage(1));
+							System.out.print(story.scenario2Options().substring(0,16) + story.scenario2Options().substring(24));
+						}
+					}
+				}
+				
+				if(phoneWin == false) {
+					
+					System.out.print(story.phoneDeath(numWins));
+					path = scan.next().toLowerCase();
+					if(path.equals("q")) {
+						con = false;
+					}
+					
+				} else {
+					if(numWins < 2) {
+						numWins ++;
+					}
+					System.out.print(story.phoneWin(numWins));
+					path = scan.next().toLowerCase();
+					if(path.equals("q")) {
+						con = false;
+					}
+				}
 				
 			//w
 			} else if (path.equals("C")) {

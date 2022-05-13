@@ -1,9 +1,10 @@
 public class CYOAObject {
 	
 	private String name;
-	private String chosenOption;
-	private static int numWins = 0;
+	//private String chosenOption;
 	private int attemptsLeft = 2;
+	private int[] pascodes = {1234, 9876, 6793, 5913};
+	
 	
 	//This is the constructor for the class
 	public CYOAObject(String n) {
@@ -49,14 +50,14 @@ public class CYOAObject {
 	}
 	
 	//This is used to print the death message after picking to take the pill
-	public String pillDeath() {
-		return "You take the pill and swallow it. You stand there for a few minutes and await said effects. As you look around the room your stomach starts to ache. "
-				+ "\nYou look around the room for some water to help calm the pain. But as you try to move your whole body cramps and you die." + deathMessage() ;
+	public String pillDeath(int numWins) {
+		return "\nYou take the pill and swallow it. You stand there for a few minutes and await said effects. As you look around the room your stomach starts to ache. "
+				+ "\nYou look around the room for some water to help calm the pain. But as you try to move your whole body cramps and you die." + deathMessage(numWins) ;
 	}
 	
 	//This is used to print the scenario after not taking the pill
 	public String noTakePill() {
-		return "You really wish to have taken the pill to just see, but glad you didn’t because it could have brought on death faster. Now that you have regained some conscience what do you do?" + noTakePillOptions();
+		return "\nYou really wish to have taken the pill to just see, but glad you didn’t because it could have brought on death faster. Now that you have regained some conscience what do you do?" + noTakePillOptions();
 	}
 	
 	//This is used to print the options after you have not taken the pill
@@ -79,26 +80,37 @@ public class CYOAObject {
 				+ "\nEnter letter to choose path: ";
 	}
 	
+	public String tryAgainMessage(int option) {
+		return "\nYou enter " + pascodes[option] + " into the phone and it doesn’t work… It shows you only have one attempt left to unlock it… You start to freak out but are calm enough to try one last time... "
+				+ "\nWhat password do you try this time?";
+	}
+	
+	public String phoneDeath(int numWins) {
+		return "\nYou enter the code and it shuts down. You sit there for a second trying to see if it will come back to life again. You realize you had entered the wrong code again and now you are doomed… "
+				+ "\nThere is no other option, so you lay down and before you know it you blackout and die…" + deathMessage(numWins);
+	}
+	
+	public String phoneWin(int numWins) {
+		return "\nYou have no clue why but those numbers have stuck with you. So you enter them and the phone unlocks! You now have access to call people. It slipped your mind for a while but you finally remember to call 911. You dial the number and someone answers. They ask you a few questions and the final words of hope arrive. It will be alright (character name here) we have found your location and are sending help immediately. You lie there in relief knowing you are going to make it. But you start to fade out because of your blood loss. All you can do is hope. Luckily within a minute they break into the room and give you the medical attention you needed. You are saved!" + winMessage(numWins);
+	}
+	
 
 	//This displays the death message after you have died.
-	public String deathMessage() {
-		return "\n\nBetter luck next time… Would you like to play again? Ways found of surviving " + numWins + " out of 2 (enter q to quit or any else to try again)";
+	public String deathMessage(int numWins) {
+		return "\n\nBetter luck next time… Would you like to play again? Ways found of surviving " + numWins + " out of 2 (enter q to quit or any else to try again): ";
 	}
 	
 	//This displays the win message of the game.
-	public String winMessage() {
-		return "\n\nCongratulations you survived! Would you like to play again and try to escape in another way? Ways found of surviving " + numWins + " out of 2 (enter q to quit or anything else to try again)";
+	public String winMessage(int numWins) {
+		return "\n\nCongratulations you survived! Would you like to play again and try to escape in another way? Ways found of surviving " + numWins + " out of 2 (enter q to quit or anything else to try again): ";
 	}
 	
-	//This is used to get the number of different win endings you have achieved.
-	public static int getNumWins() {
-		return numWins;
+	public int getAttemptsLeft() {
+		return attemptsLeft;
 	}
 	
-	//This changes the number of times you have won by one if numWins < 2
-	public static void increaseNumWins() {
-		if(numWins < 2) {
-			numWins++;
-		}
+	public void decreaseAttemptsLeft() {
+		attemptsLeft--;
 	}
+	
 }
