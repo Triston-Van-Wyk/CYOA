@@ -6,6 +6,8 @@ public class CYOADriver {
 		//Items used run the code
 		Scanner scan = new Scanner(System.in);
 		boolean con = true;
+		boolean phoneWin = false;
+		boolean yellWin = false;
 		int numWins = 0;
 		
 		System.out.print("Enter a name: ");
@@ -46,14 +48,14 @@ public class CYOADriver {
 			} else if(path.equals("B")) {
 				System.out.println(story.scenario2());
 				System.out.print(story.scenario2Options());
-				boolean phoneWin = false;
+				boolean phoneWinsection = false;
 				
-				while ((story.getAttemptsLeft() > 0) && (phoneWin==false)) {
+				while ((story.getAttemptsLeft() > 0) && (phoneWinsection==false)) {
 					
 					path = scan.next().toUpperCase();
 					
 					if(path.equals("C")) {
-						phoneWin = true;
+						phoneWinsection = true;
 					} else if (path.equals("A")) {
 						story.decreaseAttemptsLeft();
 						
@@ -77,7 +79,7 @@ public class CYOADriver {
 					}
 				}
 				
-				if(phoneWin == false) {
+				if(phoneWinsection == false) {
 					
 					System.out.print(story.phoneDeath(numWins));
 					path = scan.next().toLowerCase();
@@ -86,9 +88,10 @@ public class CYOADriver {
 					}
 					
 				} else {
-					if(numWins < 2) {
+					if((numWins < 2) && (phoneWin == false)) {
 						numWins ++;
 					}
+					phoneWin = true;
 					System.out.print(story.phoneWin(numWins));
 					path = scan.next().toLowerCase();
 					if(path.equals("q")) {
