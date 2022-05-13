@@ -142,8 +142,8 @@ public class CYOADriver {
 					} else {
 						story.decreaseAttemptsLeft();
 						if(story.getAttemptsLeft() > 0) {
-							System.out.println(story.tryAgainMessage(1));
-							System.out.print(story.scenario2Options().substring(0,16) + story.scenario2Options().substring(24));
+							System.out.println(story.tryAgainMessage(3));
+							System.out.print(story.scenario2Options().substring(0,24) + story.scenario2Options().substring(32));
 						}
 					}
 				}
