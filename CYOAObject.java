@@ -86,8 +86,9 @@ public class CYOAObject {
 				+ "\nWhat password do you try this time?";
 	}
 	
-	public String phoneDeath(int numWins) {
-		return "\nYou enter the code and it shuts down. You sit there for a second trying to see if it will come back to life again. You realize you had entered the wrong code again and now you are doomed… "
+	public String phoneDeath(int numWins, int codeChosen) {
+		return "\nYou enter the code " + pascodes[codeChosen] + " and it shuts down. You sit there for a second trying to see if it will come back to life again. "
+				+ "\nYou realize you had entered the wrong code again and now you are doomed… "
 				+ "\nThere is no other option, so you lay down and before you know it you blackout and die…" + deathMessage(numWins);
 	}
 	
@@ -126,6 +127,10 @@ public class CYOAObject {
 	
 	public int getAttemptsLeft() {
 		return attemptsLeft;
+	}
+	
+	public void resetAttemptsLeft() {
+		attemptsLeft = 2;
 	}
 	
 	public void decreaseAttemptsLeft() {

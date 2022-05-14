@@ -8,7 +8,10 @@ public class CYOADriver {
 		boolean con = true;
 		boolean phoneWin = false;
 		boolean yellWin = false;
+		boolean phoneWinsection = false;
+		int codeChosen;
 		int numWins = 0;
+		
 		
 		System.out.print("Enter a name: ");
 		String name = scan.next();
@@ -16,6 +19,11 @@ public class CYOADriver {
 		CYOAObject story = new CYOAObject(name);
 	
 		while (con == true) {
+			//Resets needed variables
+			phoneWinsection = false;
+			story.resetAttemptsLeft();
+			codeChosen = 0;
+			
 			//Used to start the game
 			System.out.println(story.intro());
 			System.out.print(story.introOptions());
@@ -44,16 +52,17 @@ public class CYOADriver {
 					if(path.equals("A")) {
 						System.out.println(story.scenario2());
 						System.out.print(story.scenario2Options());
-						boolean phoneWinsection = false;
 						
 						while ((story.getAttemptsLeft() > 0) && (phoneWinsection==false)) {
 							
 							path = scan.next().toUpperCase();
 							
+							//Determines which phone code was chosen and acts upon that
 							if(path.equals("C")) {
 								phoneWinsection = true;
 							} else if (path.equals("A")) {
 								story.decreaseAttemptsLeft();
+								codeChosen = 0;
 								
 								if(story.getAttemptsLeft() > 0) {
 									System.out.println(story.tryAgainMessage(0));
@@ -61,6 +70,7 @@ public class CYOADriver {
 								}
 							} else if (path.equals("B")) {
 								story.decreaseAttemptsLeft();
+								codeChosen = 1;
 								
 								if(story.getAttemptsLeft() > 0) {
 									System.out.println(story.tryAgainMessage(1));
@@ -68,6 +78,8 @@ public class CYOADriver {
 								}
 							} else {
 								story.decreaseAttemptsLeft();
+								codeChosen = 3;
+								
 								if(story.getAttemptsLeft() > 0) {
 									System.out.println(story.tryAgainMessage(1));
 									System.out.print(story.scenario2Options().substring(0,16) + story.scenario2Options().substring(24));
@@ -75,9 +87,10 @@ public class CYOADriver {
 							}
 						}
 						
+						//Decides if you won using the phone or not
 						if(phoneWinsection == false) {
 							
-							System.out.print(story.phoneDeath(numWins));
+							System.out.print(story.phoneDeath(numWins, codeChosen));
 							path = scan.next().toLowerCase();
 							if(path.equals("q")) {
 								con = false;
@@ -94,6 +107,7 @@ public class CYOADriver {
 								con = false;
 							}
 						}
+						//Simulates you choosing path B
 					} else if (path.equals("B")) {
 						if((numWins < 2) && (yellWin == false)) {
 							numWins ++;
@@ -104,6 +118,7 @@ public class CYOADriver {
 						if(path.equals("q")) {
 							con = false;
 						}
+						//Simulates you choosing path C
 					} else {
 						System.out.print(story.scenario4(numWins));
 						path = scan.next().toLowerCase();
@@ -117,16 +132,17 @@ public class CYOADriver {
 			} else if(path.equals("B")) {
 				System.out.println(story.scenario2());
 				System.out.print(story.scenario2Options());
-				boolean phoneWinsection = false;
 				
 				while ((story.getAttemptsLeft() > 0) && (phoneWinsection==false)) {
 					
 					path = scan.next().toUpperCase();
 					
+					//Determines which phone code was chosen and acts upon that
 					if(path.equals("C")) {
 						phoneWinsection = true;
 					} else if (path.equals("A")) {
 						story.decreaseAttemptsLeft();
+						codeChosen = 0;
 						
 						if(story.getAttemptsLeft() > 0) {
 							System.out.println(story.tryAgainMessage(0));
@@ -134,6 +150,7 @@ public class CYOADriver {
 						}
 					} else if (path.equals("B")) {
 						story.decreaseAttemptsLeft();
+						codeChosen = 1;
 						
 						if(story.getAttemptsLeft() > 0) {
 							System.out.println(story.tryAgainMessage(1));
@@ -141,6 +158,8 @@ public class CYOADriver {
 						}
 					} else {
 						story.decreaseAttemptsLeft();
+						codeChosen = 3;
+						
 						if(story.getAttemptsLeft() > 0) {
 							System.out.println(story.tryAgainMessage(3));
 							System.out.print(story.scenario2Options().substring(0,24) + story.scenario2Options().substring(32));
@@ -148,9 +167,10 @@ public class CYOADriver {
 					}
 				}
 				
+				//Decides if you have won or not
 				if(phoneWinsection == false) {
 					
-					System.out.print(story.phoneDeath(numWins));
+					System.out.print(story.phoneDeath(numWins, codeChosen));
 					path = scan.next().toLowerCase();
 					if(path.equals("q")) {
 						con = false;
@@ -180,7 +200,7 @@ public class CYOADriver {
 					con = false;
 				}
 				
-			//used to write death message of scenario 4
+			//Used to write death message of scenario 4
 			} else {
 				System.out.print(story.scenario4(numWins));
 				path = scan.next().toLowerCase();
@@ -191,6 +211,7 @@ public class CYOADriver {
 			
 		}
 		
+		//Prints a message if you found both ways to win
 		if(numWins == 2) {
 			System.out.println("\n\nWow you found all of the survival endings! Geat work!");
 		}
